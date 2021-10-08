@@ -17,7 +17,6 @@ class TransactionList extends StatelessWidget {
         itemBuilder: (context, index) {
           final tr = transactions[index];
           return Card(
-            color: Colors.blue[100],
             elevation: 3,
             child: Row(
               children: [
@@ -25,9 +24,18 @@ class TransactionList extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Text(
                     "R\$ ${tr.value.toStringAsFixed(2)}",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.purple[600]),
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor.withOpacity(0.7),
+                    ),
                   ),
-                  decoration: BoxDecoration(border: Border.all(color: Colors.purple, width: 2)),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Theme.of(context).primaryColor,
+                      width: 2,
+                    ),
+                  ),
                   padding: EdgeInsets.all(10),
                 ),
                 Column(
@@ -35,11 +43,14 @@ class TransactionList extends StatelessWidget {
                   children: [
                     Text(
                       tr.title,
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Text(
                       DateFormat('dd MMM y HH:mm:ss').format(tr.date),
-                      style: TextStyle(fontSize: 15, color: Colors.grey[600]),
+                      style: TextStyle(fontSize: 15),
                     )
                   ],
                 )

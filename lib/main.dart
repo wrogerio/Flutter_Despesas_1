@@ -15,6 +15,9 @@ class DespesasApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyHomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+      ),
     );
   }
 }
@@ -77,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             height: 110,
             child: Card(
-              color: Colors.blue,
+              color: Theme.of(context).primaryColor,
               child: Container(
                 padding: EdgeInsets.fromLTRB(15, 25, 15, 25),
                 alignment: Alignment.center,
