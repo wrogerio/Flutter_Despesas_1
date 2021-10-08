@@ -13,7 +13,7 @@ class TransactionList extends StatelessWidget {
       children: transactions
           .map((tr) => Card(
                 color: Colors.blue[100],
-                elevation: 2,
+                elevation: 3,
                 child: Row(
                   children: [
                     Container(
@@ -33,7 +33,7 @@ class TransactionList extends StatelessWidget {
                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          DateFormat('dd MMM y').format(tr.date),
+                          DateFormat('dd MMM y HH:mm:ss').format(tr.date),
                           style: TextStyle(fontSize: 15, color: Colors.grey[600]),
                         )
                       ],
