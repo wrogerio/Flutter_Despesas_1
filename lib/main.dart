@@ -34,9 +34,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [
-    Transaction(id: 't0', title: 'Conta Antiga', value: 905.25, date: DateTime.now().subtract(Duration(days: 2))),
-    Transaction(id: 't1', title: 'Lápis 6b', value: 74.45, date: DateTime.now().subtract(Duration(days: 1))),
-    Transaction(id: 't1', title: 'Caneta Esferográfica', value: 2.30, date: DateTime.now().subtract(Duration(days: 1))),
+    // Transaction(id: 't0', title: 'Conta Antiga', value: 905.25, date: DateTime.now().subtract(Duration(days: 2))),
+    // Transaction(id: 't1', title: 'Lápis 6b', value: 74.45, date: DateTime.now().subtract(Duration(days: 1))),
+    // Transaction(id: 't1', title: 'Caneta Esferográfica', value: 2.30, date: DateTime.now().subtract(Duration(days: 1))),
   ];
 
   List<Transaction> get _recentTransactions {
@@ -54,12 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  _addTransaction(String title, double value) {
+  _addTransaction(String title, double value, DateTime dt) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: dt,
     );
 
     setState(() {
@@ -67,6 +67,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
 
     Navigator.of(context).pop();
+  }
+
+  _removeTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((tr) => tr.id == id);
+    });
   }
 
   @override
@@ -86,7 +92,11 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Chart(_recentTransactions),
-          Expanded(child: TransactionList(transactions: _transactions)),
+          Expanded(
+              child: TransactionList(
+            transactions: _transactions,
+            onRemove: _removeTransaction,
+          )),
         ],
       ),
       floatingActionButton: FloatingActionButton(
